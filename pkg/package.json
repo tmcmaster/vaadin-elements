@@ -1,9 +1,31 @@
 {
-    "name": "@wonkytech/vaadin-elements",
-    "version": "0.0.13",
-    "description": "Attempting to build a Pika package for the Vaadin web components.",
-    "author": "Tim McMaster",
-    "homepage": "https://tmcmaster.github.io/vaadin-elements",
-    "license": "MIT",
-    "repository": "https://github.com/tmcmaster/vaadin-elements"
+  "name": "@wonkytech/vaadin-elements",
+  "description": "Attempting to build a Pika package for the Vaadin web components.",
+  "version": "0.0.18",
+  "license": "MIT",
+  "files": [
+    "dist-*/",
+    "bin/"
+  ],
+  "pika": true,
+  "sideEffects": true,
+  "homepage": "https://tmcmaster.github.io/vaadin-elements",
+  "repository": "https://github.com/tmcmaster/vaadin-elements",
+  "dependencies": {
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "@vaadin/vaadin": "^14.0.14",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.1",
+    "@pika/plugin-build-types": "^0.6.1",
+    "@pika/plugin-build-web": "^0.6.1",
+    "@pika/plugin-standard-pkg": "^0.6.1",
+    "@pika/types": "^0.6.1",
+    "owc-dev-server": "^0.3.0"
+  },
+  "esnext": "dist-src/index.js",
+  "main": "dist-node/index.js",
+  "module": "dist-web/index.js"
 }
