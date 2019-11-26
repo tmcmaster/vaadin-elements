@@ -1,6 +1,6 @@
 {
     "name": "@wonkytech/vaadin-elements",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "Attempting to build a Pika package for the Vaadin web components.",
     "author": "Tim McMaster",
     "homepage": "https://tmcmaster.github.io/vaadin-elements",
@@ -31,9 +31,7 @@
         "docs": "http-server docs",
         "docs:open": "http-server --open docs"
     },
-    "dependencies": {
-
-    },
+    "dependencies": {},
     "devDependencies": {
         "@pika/pack": "^0.5.0",
         "@pika/plugin-build-node": "^0.6.1",
