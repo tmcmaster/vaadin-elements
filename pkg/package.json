@@ -11,7 +11,13 @@
   "sideEffects": true,
   "homepage": "https://tmcmaster.github.io/vaadin-elements",
   "repository": "https://github.com/tmcmaster/vaadin-elements",
-  "dependencies": {},
+  "dependencies": {
+    "@polymer/iron-a11y-announcer": "^3.0.2",
+    "@polymer/iron-a11y-keys-behavior": "^3.0.1",
+    "@polymer/iron-resizable-behavior": "^3.0.1",
+    "@polymer/iron-scroll-target-behavior": "^3.0.1",
+    "@polymer/polymer": "^3.3.1"
+  },
   "devDependencies": {
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.6.1",
