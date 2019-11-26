@@ -31,10 +31,11 @@
         "docs": "http-server docs",
         "docs:open": "http-server --open docs"
     },
-    "dependencies": {},
-    "devDependencies": {
+    "dependencies": {
         "lit-element": "^2.0.1",
-        "lit-html": "^1.0.0",
+        "lit-html": "^1.0.0"
+    },
+    "devDependencies": {
         "@vaadin/vaadin-button": "^2.2.1",
         "@vaadin/vaadin-checkbox": "^2.2.10",
         "@vaadin/vaadin-combo-box": "^5.0.9",
