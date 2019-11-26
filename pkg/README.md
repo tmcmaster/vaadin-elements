@@ -1,6 +1,20 @@
-# \<vaadin-grid\>
+# Vaadin Components
 
+## Build
 
+After adding any extra Vaadin components to the package.json file, build the pika package.
+```bash
+./bin/build.sh
+```
+
+Commit changes, and push to the git repository.
+
+publish the pika package: 
+```bash
+pika publish
+```
+
+Commit remaining changes.
 
 ## Install the Polymer-CLI
 
