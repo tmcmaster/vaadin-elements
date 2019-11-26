@@ -3,8 +3,8 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { PolymerElement } from "/polymer/polymer-element.js";
-import { templatize } from "/polymer/lib/utils/templatize.js";
+import { PolymerElement } from "@polymer/polymer/polymer-element.js";
+import { templatize } from "@polymer/polymer/lib/utils/templatize.js";
 /**
  * `vaadin-grid-templatizer` is a helper element for the `vaadin-grid` that is preparing and
  * stamping instances of cells and columns templates

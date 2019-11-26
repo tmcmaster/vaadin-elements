@@ -3,8 +3,8 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { PolymerElement } from "/polymer/polymer-element.js";
-import { html } from "/polymer/lib/utils/html-tag.js";
+import { PolymerElement } from "@polymer/polymer/polymer-element.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 /**
  * This Element is used internally by vaadin-grid.
  *

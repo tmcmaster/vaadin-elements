@@ -1,4 +1,4 @@
-import { DomModule } from "/polymer/lib/elements/dom-module.js";
+import { DomModule } from "@polymer/polymer/lib/elements/dom-module.js";
 import { ThemePropertyMixin } from './vaadin-theme-property-mixin.js';
 /**
  * @polymerMixin

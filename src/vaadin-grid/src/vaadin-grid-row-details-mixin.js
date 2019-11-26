@@ -4,7 +4,7 @@ Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
 import { Templatizer } from './vaadin-grid-templatizer.js';
-import { flush } from "/polymer/lib/utils/flush.js";
+import { flush } from "@polymer/polymer/lib/utils/flush.js";
 /**
  * @polymerMixin
  */

@@ -3,8 +3,8 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import "/polymer/lib/elements/dom-module.js";
-import { html } from "/polymer/lib/utils/html-tag.js";
+import "@polymer/polymer/lib/elements/dom-module.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 const VaadinGridStyles = document.createElement('dom-module'); // NOTE(web-padawan): https://github.com/vaadin/vaadin-grid/issues/1514
 
 VaadinGridStyles.appendChild(html`

@@ -1,6 +1,6 @@
 import './version.js';
-import "/polymer/lib/elements/custom-style.js";
-import "/polymer/lib/elements/dom-module.js";
+import "@polymer/polymer/lib/elements/custom-style.js";
+import "@polymer/polymer/lib/elements/dom-module.js";
 const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<custom-style>
   <style>

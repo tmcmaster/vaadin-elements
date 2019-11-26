@@ -5,7 +5,7 @@ import "../../../vaadin-lumo-styles/spacing.js";
 import "../../../vaadin-lumo-styles/style.js";
 import "../../../vaadin-lumo-styles/typography.js";
 import "../../../vaadin-checkbox/theme/lumo/vaadin-checkbox.js";
-import { html } from "/polymer/lib/utils/html-tag.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 const $_documentContainer = html`<dom-module id="lumo-grid" theme-for="vaadin-grid">
   <template>
     <style>

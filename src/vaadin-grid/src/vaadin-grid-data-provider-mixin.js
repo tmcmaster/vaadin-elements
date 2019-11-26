@@ -3,8 +3,8 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { Debouncer } from "/polymer/lib/utils/debounce.js";
-import { timeOut } from "/polymer/lib/utils/async.js";
+import { Debouncer } from "@polymer/polymer/lib/utils/debounce.js";
+import { timeOut } from "@polymer/polymer/lib/utils/async.js";
 export const ItemCache = class ItemCache {
   constructor(grid, parentCache, parentItem) {
     this.grid = grid;

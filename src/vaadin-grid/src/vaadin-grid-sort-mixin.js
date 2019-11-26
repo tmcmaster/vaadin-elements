@@ -3,8 +3,8 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { microTask } from "/polymer/lib/utils/async.js";
-import { PolymerElement } from "/polymer/polymer-element.js";
+import { microTask } from "@polymer/polymer/lib/utils/async.js";
+import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 /**
  * @polymerMixin
  */

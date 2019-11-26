@@ -5,8 +5,8 @@ This program is available under Apache License Version 2.0, available at https:/
 */
 import "../../vaadin-themable-mixin/vaadin-themable-mixin.js";
 import { ControlStateMixin } from "../../vaadin-control-state-mixin/vaadin-control-state-mixin.js";
-import { timeOut } from "/polymer/lib/utils/async.js";
-import { Debouncer } from "/polymer/lib/utils/debounce.js";
+import { timeOut } from "@polymer/polymer/lib/utils/async.js";
+import { Debouncer } from "@polymer/polymer/lib/utils/debounce.js";
 const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<dom-module id="vaadin-text-field-shared-styles">
   <template>

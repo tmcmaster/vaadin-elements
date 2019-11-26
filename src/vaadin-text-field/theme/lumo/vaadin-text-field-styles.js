@@ -6,7 +6,7 @@ import "../../../vaadin-lumo-styles/typography.js";
 import "../../../vaadin-lumo-styles/mixins/required-field.js";
 import "../../../vaadin-lumo-styles/font-icons.js";
 import "../../../vaadin-lumo-styles/mixins/field-button.js";
-import { html } from "/polymer/lib/utils/html-tag.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 const $_documentContainer = html`<dom-module id="lumo-text-field" theme-for="vaadin-text-field">
   <template>
     <style include="lumo-required-field lumo-field-button">

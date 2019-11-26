@@ -1,4 +1,4 @@
-import "/polymer/lib/elements/custom-style.js";
+import "@polymer/polymer/lib/elements/custom-style.js";
 import './version.js';
 const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<custom-style>

@@ -3,7 +3,7 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import "/polymer/polymer-legacy.js";
+import "@polymer/polymer/polymer-legacy.js";
 import { ThemableMixin } from "../../vaadin-themable-mixin/vaadin-themable-mixin.js";
 import { ScrollerElement } from './vaadin-grid-scroller.js';
 import { A11yMixin } from './vaadin-grid-a11y-mixin.js';
@@ -26,10 +26,10 @@ import './vaadin-grid-column.js';
 import './vaadin-grid-outer-scroller.js';
 import './vaadin-grid-styles.js';
 import { ElementMixin } from "../../vaadin-element-mixin/vaadin-element-mixin.js";
-import { html } from "/polymer/lib/utils/html-tag.js";
-import { beforeNextRender, afterNextRender } from "/polymer/lib/utils/render-status.js";
-import { Debouncer } from "/polymer/lib/utils/debounce.js";
-import { timeOut, animationFrame } from "/polymer/lib/utils/async.js";
+import { html } from "@polymer/polymer/lib/utils/html-tag.js";
+import { beforeNextRender, afterNextRender } from "@polymer/polymer/lib/utils/render-status.js";
+import { Debouncer } from "@polymer/polymer/lib/utils/debounce.js";
+import { timeOut, animationFrame } from "@polymer/polymer/lib/utils/async.js";
 
 const TOUCH_DEVICE = (() => {
   try {

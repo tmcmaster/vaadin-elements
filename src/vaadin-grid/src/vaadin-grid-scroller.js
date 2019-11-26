@@ -3,11 +3,11 @@
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { afterNextRender } from "/polymer/lib/utils/render-status.js";
-import { animationFrame } from "/polymer/lib/utils/async.js";
-import { flush } from "/polymer/lib/utils/flush.js";
+import { afterNextRender } from "@polymer/polymer/lib/utils/render-status.js";
+import { animationFrame } from "@polymer/polymer/lib/utils/async.js";
+import { flush } from "@polymer/polymer/lib/utils/flush.js";
 import { PolymerIronList } from './iron-list.js';
-import { Debouncer } from "/polymer/lib/utils/debounce.js";
+import { Debouncer } from "@polymer/polymer/lib/utils/debounce.js";
 /**
  * This Element is used internally by vaadin-grid.
  *

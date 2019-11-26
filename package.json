@@ -33,6 +33,8 @@
     },
     "dependencies": {
         "@vaadin/vaadin-button": "^2.2.1",
+        "@vaadin/vaadin-checkbox": "^2.2.10",
+        "@vaadin/vaadin-dialog": "^2.2.1",
         "@vaadin/vaadin-grid": "^5.4.12",
         "@vaadin/vaadin-text-field": "^2.4.14",
         "lit-element": "^2.0.1",
