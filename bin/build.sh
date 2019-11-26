@@ -21,4 +21,4 @@ done
 cp include/src/index.js src/
 
 pika build;
-cp include/package/pkg/package.json pkg/package.json
+#cp include/package/pkg/package.json pkg/package.json
