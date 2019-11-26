@@ -1,6 +1,6 @@
 {
     "name": "@wonkytech/vaadin-elements",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "Attempting to build a Pika package for the Vaadin web components.",
     "author": "Tim McMaster",
     "homepage": "https://tmcmaster.github.io/vaadin-elements",
