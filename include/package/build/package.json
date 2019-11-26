@@ -1,0 +1,68 @@
+{
+    "name": "@wonkytech/vaadin-elements",
+    "version": "0.0.9",
+    "description": "Attempting to build a Pika package for the Vaadin web components.",
+    "author": "Tim McMaster",
+    "homepage": "https://tmcmaster.github.io/vaadin-elements",
+    "license": "MIT",
+    "repository": "https://github.com/tmcmaster/vaadin-elements",
+    "pika": true,
+    "sideEffects": true,
+    "@pika/pack": {
+        "pipeline": [
+            [
+                "@pika/plugin-standard-pkg"
+            ],
+            [
+                "@pika/plugin-build-node"
+            ],
+            [
+                "@pika/plugin-build-web"
+            ]
+        ]
+    },
+    "scripts": {
+        "build": "pika build",
+        "version": "npm run build",
+        "publish": "pika publish",
+        "demo": "owc-dev-server",
+        "demo:open": "owc-dev-server --open demo",
+        "build:docs": "npm install && npx @pika/web --dest docs/web_modules",
+        "docs": "http-server docs",
+        "docs:open": "http-server --open docs"
+    },
+    "dependencies": {
+        "@vaadin/vaadin-button": "^2.2.1",
+        "@vaadin/vaadin-checkbox": "^2.2.10",
+        "@vaadin/vaadin-combo-box": "^5.0.9",
+        "@vaadin/vaadin-context-menu": "^4.3.13",
+        "@vaadin/vaadin-date-picker": "^4.0.5",
+        "@vaadin/vaadin-dialog": "^2.2.1",
+        "@vaadin/vaadin-form-layout": "^2.1.6",
+        "@vaadin/vaadin-grid": "^5.4.12",
+        "@vaadin/vaadin-icons": "^4.3.1",
+        "@vaadin/vaadin-item": "^2.1.1",
+        "@vaadin/vaadin-list-box": "^1.2.0",
+        "@vaadin/vaadin-notification": "^1.4.0",
+        "@vaadin/vaadin-ordered-layout": "^1.1.0",
+        "@vaadin/vaadin-progress-bar": "^1.1.2",
+        "@vaadin/vaadin-radio-button": "^1.2.3",
+        "@vaadin/vaadin-select": "^2.1.6",
+        "@vaadin/vaadin-split-layout": "^4.1.1",
+        "@vaadin/vaadin-tabs": "^3.0.5",
+        "@vaadin/vaadin-text-field": "^2.4.14",
+        "@vaadin/vaadin-time-picker": "^2.0.4",
+        "@vaadin/vaadin-upload": "^4.2.2",
+        "lit-element": "^2.0.1",
+        "lit-html": "^1.0.0"
+    },
+    "devDependencies": {
+        "@pika/pack": "^0.5.0",
+        "@pika/plugin-build-node": "^0.6.1",
+        "@pika/plugin-build-types": "^0.6.1",
+        "@pika/plugin-build-web": "^0.6.1",
+        "@pika/plugin-standard-pkg": "^0.6.1",
+        "@pika/types": "^0.6.1",
+        "owc-dev-server": "^0.3.0"
+    }
+}

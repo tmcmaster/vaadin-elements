@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cp include/package/build/package.json package.json
 npm install
 cp include/npm/index.* node_modules;
 (cd node_modules; polymer build);
@@ -21,4 +22,5 @@ done
 cp include/src/index.js src/
 
 pika build;
-cp include/pkg/package.json pkg/package.json
+cp include/package/pkg/package.json package.json
+cp include/package/pkg/package.json pkg/package.json
