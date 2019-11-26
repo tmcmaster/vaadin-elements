@@ -18,3 +18,5 @@ do
 done
 
 cp include/src/index.js src/
+
+pika build;
