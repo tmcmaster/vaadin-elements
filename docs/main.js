@@ -50,9 +50,9 @@ render(html`
             <div>
                 <h2>vaadin-grid</h2>
                 <vaadin-grid id="vaadin-grid" .items="${dataGridData}">
-                    <vaadin-grid-column path="name.first" header="First name"></vaadin-grid-column>
-                    <vaadin-grid-column path="name.last" header="Last name"></vaadin-grid-column>
-                    <vaadin-grid-column path="location.city"></vaadin-grid-column>
+                    <vaadin-grid-filter-column path="name.first" header="First name"></vaadin-grid-filter-column>
+                    <vaadin-grid-filter-column path="name.last" header="Last name"></vaadin-grid-filter-column>
+                    <vaadin-grid-sort-column path="location.city"></vaadin-grid-sort-column>
                     <vaadin-grid-column path="visitCount" text-align="end" width="120px" flex-grow="0"></vaadin-grid-column>
                 </vaadin-grid>  
             </div>      
