@@ -1,5 +1,6 @@
 #!/bin/bash
 
+npm install
 cp include/npm/index.* node_modules;
 (cd node_modules; polymer build);
 rsync -a node_modules/build/default/\@vaadin/ src/
@@ -20,3 +21,4 @@ done
 cp include/src/index.js src/
 
 pika build;
+cp include/pkg/package.json pkg/package.json
