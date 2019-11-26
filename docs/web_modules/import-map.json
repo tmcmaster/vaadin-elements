@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@wonkytech/vaadin-elements": "./@wonkytech/vaadin-elements.js"
+  }
+}
