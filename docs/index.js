@@ -1,2 +1,3 @@
-import './web_modules/@wonkytech/vaadin-elements.js';
-import './main.js';
+import './web_modules/@wonkytech/tm-examples.js';
+
+import './main-new.js';

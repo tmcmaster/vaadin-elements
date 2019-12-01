@@ -12,6 +12,12 @@ function testing() {
 render(html`
     <style>
         body {
+            background: lightgray;
+        }
+    </style>
+
+    <style>
+        body {
           background-color: lightgray;
           padding: 0;
           margin: 0;

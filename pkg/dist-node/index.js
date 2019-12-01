@@ -24,6 +24,7 @@ var polymerLegacy_js = require('@polymer/polymer/polymer-legacy.js');
 var ironScrollTargetBehavior_js = require('@polymer/iron-scroll-target-behavior/iron-scroll-target-behavior.js');
 var polymer_dom_js = require('@polymer/polymer/lib/legacy/polymer.dom.js');
 var settings_js = require('@polymer/polymer/lib/utils/settings.js');
+require(',/vaadin-grid/vaadin-grid-column.js');
 require('@polymer/iron-icon/iron-icon.js');
 require('@polymer/iron-iconset-svg/iron-iconset-svg.js');
 var caseMap_js = require('@polymer/polymer/lib/utils/case-map.js');

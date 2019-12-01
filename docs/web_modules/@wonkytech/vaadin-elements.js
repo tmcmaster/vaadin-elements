@@ -41352,8 +41352,505 @@ class GridElement extends ElementMixin$1(ThemableMixin(DataProviderMixin(ArrayDa
 
 customElements.define(GridElement.is, GridElement);
 
-const $_documentContainer$v = document.createElement('template');
-$_documentContainer$v.innerHTML = `<iron-iconset-svg name="vaadin" size="16">
+/**
+@license
+Copyright (c) 2017 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+*/
+/**
+ * `<vaadin-grid-filter>` is a helper element for the `<vaadin-grid>` that provides out-of-the-box UI controls,
+ * and handlers for filtering the grid data.
+ *
+ * #### Example:
+ * ```html
+ * <vaadin-grid-column>
+ *   <template class="header">
+ *     <vaadin-grid-filter path="name.first"></vaadin-grid-filter>
+ *   </template>
+ *   <template>[[item.name.first]]</template>
+ * </vaadin-grid-column>
+ * ```
+ *
+ * @memberof Vaadin
+ */
+
+class GridFilterElement extends class extends PolymerElement {} {
+  static get template() {
+    return html`
+    <style>
+      :host {
+        display: inline-flex;
+        max-width: 100%;
+      }
+
+      #filter {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+    <slot name="filter">
+      <vaadin-text-field id="filter" value="{{value}}"></vaadin-text-field>
+    </slot>
+`;
+  }
+
+  static get is() {
+    return 'vaadin-grid-filter';
+  }
+
+  static get properties() {
+    return {
+      /**
+       * JS Path of the property in the item used for filtering the data.
+       */
+      path: String,
+
+      /**
+       * Current filter value.
+       */
+      value: {
+        type: String,
+        notify: true
+      },
+      _connected: Boolean
+    };
+  }
+  /** @protected */
+
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._connected = true;
+  }
+
+  static get observers() {
+    return ['_filterChanged(path, value, _connected)'];
+  }
+
+  ready() {
+    super.ready();
+    const child = dom(this).firstElementChild;
+
+    if (child && child.getAttribute('slot') !== 'filter') {
+      console.warn('Make sure you have assigned slot="filter" to the child elements of <vaadin-grid-filter>');
+      child.setAttribute('slot', 'filter');
+    }
+  }
+
+  _filterChanged(path, value, connected) {
+    if (path === undefined || value === undefined || !connected) {
+      return;
+    }
+
+    if (this._previousValue === undefined && value === '') {
+      return;
+    }
+
+    this._previousValue = value;
+    this._debouncerFilterChanged = Debouncer.debounce(this._debouncerFilterChanged, timeOut.after(200), () => {
+      this.dispatchEvent(new CustomEvent('filter-changed', {
+        bubbles: true
+      }));
+    });
+  }
+
+  focus() {
+    this.$.filter.focus();
+  }
+
+}
+
+customElements.define(GridFilterElement.is, GridFilterElement);
+
+/**
+@license
+Copyright (c) 2018 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+*/
+/**
+ * `<vaadin-grid-filter-column>` is a helper element for the `<vaadin-grid>`
+ * that provides default header template and functionality for filtering.
+ *
+ * #### Example:
+ * ```html
+ * <vaadin-grid items="[[items]]">
+ *  <vaadin-grid-filter-column path="name.first"></vaadin-grid-filter-column>
+ *
+ *  <vaadin-grid-column>
+ *    ...
+ * ```
+ *
+ * @memberof Vaadin
+ */
+
+class GridFilterColumnElement extends GridColumnElement {
+  static get template() {
+    return html`
+    <template class="header" id="headerTemplate">
+      <vaadin-grid-filter path="[[path]]" value="[[_filterValue]]">
+        <vaadin-text-field theme="small" focus-target="" style="max-width: 100%;" slot="filter" value="{{_filterValue}}" label="[[_getHeader(header, path)]]"></vaadin-text-field>
+      </vaadin-grid-filter>
+    </template>
+`;
+  }
+
+  static get is() {
+    return 'vaadin-grid-filter-column';
+  }
+
+  static get properties() {
+    return {
+      /**
+       * JS Path of the property in the item used for filtering the data.
+       */
+      path: String,
+
+      /**
+       * Text to display as the label of the column filter text-field.
+       */
+      header: String
+    };
+  }
+
+  _prepareHeaderTemplate() {
+    const headerTemplate = this._prepareTemplatizer(this.$.headerTemplate); // needed to override the dataHost correctly in case internal template is used.
+
+
+    headerTemplate.templatizer.dataHost = this;
+    return headerTemplate;
+  }
+
+  _getHeader(header, path) {
+    return header || this._generateHeader(path);
+  }
+
+}
+
+customElements.define(GridFilterColumnElement.is, GridFilterColumnElement);
+
+const $_documentContainer$v = html`<dom-module id="lumo-grid-sorter" theme-for="vaadin-grid-sorter">
+  <template>
+    <style>
+      :host {
+        justify-content: flex-start;
+        align-items: baseline;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      [part="content"] {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      [part="indicators"] {
+        margin-left: var(--lumo-space-s);
+      }
+
+      :host(:not([direction])) [part="indicators"]::before {
+        opacity: 0.2;
+      }
+
+      :host([direction]) {
+        color: var(--lumo-primary-text-color);
+      }
+
+      [part="order"] {
+        font-size: var(--lumo-font-size-xxs);
+        line-height: 1;
+      }
+    </style>
+  </template>
+</dom-module>`;
+document.head.appendChild($_documentContainer$v.content);
+
+/**
+@license
+Copyright (c) 2017 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+*/
+const $_documentContainer$w = document.createElement('template');
+$_documentContainer$w.innerHTML = `<custom-style>
+  <style>
+    @font-face {
+      font-family: 'vaadin-grid-sorter-icons';
+      src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAQwAA0AAAAABuwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEFAAAABkAAAAcfep+mUdERUYAAAP4AAAAHAAAAB4AJwAOT1MvMgAAAZgAAAA/AAAAYA8TBPpjbWFwAAAB7AAAAFUAAAFeF1fZ4mdhc3AAAAPwAAAACAAAAAgAAAAQZ2x5ZgAAAlgAAABcAAAAnMvguMloZWFkAAABMAAAAC8AAAA2C5Ap72hoZWEAAAFgAAAAHQAAACQGbQPHaG10eAAAAdgAAAAUAAAAHAoAAABsb2NhAAACRAAAABIAAAASAIwAYG1heHAAAAGAAAAAFgAAACAACwAKbmFtZQAAArQAAAECAAACZxWCgKhwb3N0AAADuAAAADUAAABZCrApUXicY2BkYGAA4rDECVrx/DZfGbhZGEDgyqNPOxH0/wNMq5kPALkcDEwgUQBWRA0dAHicY2BkYGA+8P8AAwMLAwgwrWZgZEAFbABY4QM8AAAAeJxjYGRgYOAAQiYGEICQSAAAAi8AFgAAeJxjYGY6yziBgZWBgWkm0xkGBoZ+CM34msGYkZMBFTAKoAkwODAwvmRiPvD/AIMDMxCD1CDJKjAwAgBktQsXAHicY2GAAMZQCM0EwqshbAALxAEKeJxjYGBgZoBgGQZGBhCIAPIYwXwWBhsgzcXAwcAEhIwMCi+Z/v/9/x+sSuElA4T9/4k4K1gHFwMMMILMY2QDYmaoABOQYGJABUA7WBiGNwAAJd4NIQAAAAAAAAAACAAIABAAGAAmAEAATgAAeJyNjLENgDAMBP9tIURJwQCMQccSZgk2i5fIYBDAidJjycXr7x5EPwE2wY8si7jmyBNXGo/bNBerxJNrpxhbO3/fEFpx8ZICpV+ghxJ74fAMe+h7Ox14AbrsHB14nK2QQWrDMBRER4mTkhQK3ZRQKOgCNk7oGQqhhEIX2WSlWEI1BAlkJ5CDdNsj5Ey9Rncdi38ES+jzNJo/HwTgATcoDEthhY3wBHc4CE+pfwsX5F/hGe7Vo/AcK/UhvMSz+mGXKhZU6pww8ISz3oWn1BvhgnwTnuEJf8Jz1OpFeIlX9YULDLdFi4ASHolkSR0iuYdjLak1vAequBhj21D61Nqyi6l3qWybGPjySbPHGScGJl6dP58MYcQRI0bts7mjebBqrFENH7t3qWtj0OuqHnXcW7b0HOTZFnKryRGW2hFX1m0O2vEM3opNMfTau+CS6Z3Vx6veNnEXY6jwDxhsc2gAAHicY2BiwA84GBgYmRiYGJkZmBlZGFkZ2djScyoLMgzZS/MyDQwMwLSrpYEBlIbxjQDrzgsuAAAAAAEAAf//AA94nGNgZGBg4AFiMSBmYmAEQnYgZgHzGAAD6wA2eJxjYGBgZACCKyoz1cD0o087YTQATOcIewAAAA==) format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+</custom-style>`;
+document.head.appendChild($_documentContainer$w.content);
+/**
+ * `<vaadin-grid-sorter>` is a helper element for the `<vaadin-grid>` that provides out-of-the-box UI controls,
+ * visual feedback, and handlers for sorting the grid data.
+ *
+ * #### Example:
+ * ```html
+ * <vaadin-grid-column>
+ *   <template class="header">
+ *     <vaadin-grid-sorter path="name.first">First name</vaadin-grid-sorter>
+ *   </template>
+ *   <template>[[item.name.first]]</template>
+ * </vaadin-grid-column>
+ * ```
+ *
+ * ### Styling
+ *
+ * The following shadow DOM parts are available for styling:
+ *
+ * Part name | Description
+ * ----------------|----------------
+ * `content` | The slotted content wrapper
+ * `indicators` | The internal sorter indicators.
+ * `order` | The internal sorter order
+ *
+ * The following state attributes are available for styling:
+ *
+ * Attribute    | Description | Part name
+ * -------------|-------------|------------
+ * `direction` | Sort direction of a sorter | :host
+ *
+ * @memberof Vaadin
+ */
+
+class GridSorterElement extends ThemableMixin(PolymerElement) {
+  static get template() {
+    return html`
+    <style>
+      :host {
+        display: inline-flex;
+        cursor: pointer;
+        max-width: 100%;
+      }
+
+      [part="content"] {
+        flex: 1 1 auto;
+      }
+
+      [part="indicators"] {
+        position: relative;
+        align-self: center;
+        flex: none;
+      }
+
+      [part="order"] {
+        display: inline;
+        vertical-align: super;
+      }
+
+      [part="indicators"]::before {
+        font-family: 'vaadin-grid-sorter-icons';
+      }
+
+      :host(:not([direction])) [part="indicators"]::before {
+        content: "\\e901";
+      }
+
+      :host([direction=asc]) [part="indicators"]::before {
+        content: "\\e900";
+      }
+
+      :host([direction=desc]) [part="indicators"]::before {
+        content: "\\e902";
+      }
+    </style>
+
+    <div part="content">
+      <slot></slot>
+    </div>
+    <div part="indicators">
+      <span part="order">[[_getDisplayOrder(_order)]]</span>
+    </div>
+`;
+  }
+
+  static get is() {
+    return 'vaadin-grid-sorter';
+  }
+
+  static get properties() {
+    return {
+      /**
+       * JS Path of the property in the item used for sorting the data.
+       */
+      path: String,
+
+      /**
+       * How to sort the data.
+       * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+       * descending direction, or `null` for not sorting the data.
+       */
+      direction: {
+        type: String,
+        reflectToAttribute: true,
+        notify: true,
+        value: null
+      },
+      _order: {
+        type: Number,
+        value: null
+      },
+      _isConnected: {
+        type: Boolean,
+        value: false
+      }
+    };
+  }
+
+  static get observers() {
+    return ['_pathOrDirectionChanged(path, direction, _isConnected)', '_directionOrOrderChanged(direction, _order)'];
+  }
+
+  ready() {
+    super.ready();
+    this.addEventListener('click', this._onClick.bind(this));
+  }
+  /** @protected */
+
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._isConnected = true;
+  }
+  /** @protected */
+
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._isConnected = false;
+  }
+
+  _pathOrDirectionChanged(path, direction, isConnected) {
+    if (path === undefined || direction === undefined || isConnected === undefined) {
+      return;
+    }
+
+    if (isConnected) {
+      this.dispatchEvent(new CustomEvent('sorter-changed', {
+        bubbles: true,
+        composed: true
+      }));
+    }
+  }
+
+  _getDisplayOrder(order) {
+    return order === null ? '' : order + 1;
+  }
+
+  _onClick(e) {
+    const activeElement = this.getRootNode().activeElement;
+
+    if (this !== activeElement && this.contains(activeElement)) {
+      // Some focusable content inside the sorter was clicked, do nothing.
+      return;
+    }
+
+    e.preventDefault();
+
+    if (this.direction === 'asc') {
+      this.direction = 'desc';
+    } else if (this.direction === 'desc') {
+      this.direction = null;
+    } else {
+      this.direction = 'asc';
+    }
+  }
+
+  _directionOrOrderChanged(direction, order) {
+    if (direction === undefined || order === undefined) {
+      return;
+    } // Safari has an issue with repainting shadow root element styles when a host attribute changes.
+    // Need this workaround (toggle any inline css property on and off) until the issue gets fixed.
+
+
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari && this.root) {
+      this.root.querySelectorAll('*').forEach(function (el) {
+        el.style['-webkit-backface-visibility'] = 'visible';
+        el.style['-webkit-backface-visibility'] = '';
+      });
+    }
+  }
+
+}
+
+customElements.define(GridSorterElement.is, GridSorterElement);
+
+/**
+@license
+Copyright (c) 2018 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+*/
+/**
+ * `<vaadin-grid-sort-column>` is a helper element for the `<vaadin-grid>`
+ * that provides default header template and functionality for sorting.
+ *
+ * #### Example:
+ * ```html
+ * <vaadin-grid items="[[items]]">
+ *  <vaadin-grid-sort-column path="name.first" direction="asc"></vaadin-grid-sort-column>
+ *
+ *  <vaadin-grid-column>
+ *    ...
+ * ```
+ *
+ * @memberof Vaadin
+ */
+
+class GridSortColumnElement extends GridColumnElement {
+  static get template() {
+    return html`
+    <template class="header" id="headerTemplate">
+      <vaadin-grid-sorter path="[[path]]" direction="{{direction}}">[[_getHeader(header, path)]]</vaadin-grid-sorter>
+    </template>
+`;
+  }
+
+  static get is() {
+    return 'vaadin-grid-sort-column';
+  }
+
+  static get properties() {
+    return {
+      /**
+       * JS Path of the property in the item used for sorting the data.
+       */
+      path: String,
+
+      /**
+       * How to sort the data.
+       * Possible values are `asc` to use an ascending algorithm, `desc` to sort the data in
+       * descending direction, or `null` for not sorting the data.
+       */
+      direction: {
+        type: String,
+        notify: true
+      }
+    };
+  }
+
+  _prepareHeaderTemplate() {
+    const headerTemplate = this._prepareTemplatizer(this.$.headerTemplate); // needed to override the dataHost correctly in case internal template is used.
+
+
+    headerTemplate.templatizer.dataHost = this;
+    return headerTemplate;
+  }
+
+  _getHeader(header, path) {
+    return header || this._generateHeader(path);
+  }
+
+}
+
+customElements.define(GridSortColumnElement.is, GridSortColumnElement);
+
+const $_documentContainer$x = document.createElement('template');
+$_documentContainer$x.innerHTML = `<iron-iconset-svg name="vaadin" size="16">
 <svg><defs>
 <g id="abacus"><path d="M0 0v16h16v-16h-16zM14 2v3h-0.1c-0.2-0.6-0.8-1-1.4-1s-1.2 0.4-1.4 1h-3.2c-0.2-0.6-0.7-1-1.4-1s-1.2 0.4-1.4 1h-0.2c-0.2-0.6-0.7-1-1.4-1s-1.2 0.4-1.4 1h-0.1v-3h12zM13.9 10c-0.2-0.6-0.8-1-1.4-1s-1.2 0.4-1.4 1h-0.2c-0.2-0.6-0.8-1-1.4-1s-1.2 0.4-1.4 1h-3.2c-0.2-0.6-0.7-1-1.4-1s-1.2 0.4-1.4 1h-0.1v-4h0.1c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h0.2c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h3.2c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h0.1l-0.1 4zM2 14v-3h0.1c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h3.2c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h0.2c0.2 0.6 0.8 1 1.4 1s1.2-0.4 1.4-1h0.1v3h-12z"></path></g>
 <g id="absolute-position"><path d="M0 0v16h16v-16h-16zM15 15h-14v-6h3v1l3-2-3-2v1h-3v-6h6v3h-1l2 3 2-3h-1v-3h6v14z"></path></g>
@@ -41993,9 +42490,9 @@ $_documentContainer$v.innerHTML = `<iron-iconset-svg name="vaadin" size="16">
 <g id="youtube"><path d="M6.6 0h-0.9l-0.6 2.3-0.6-2.3h-1c0.2 0.6 0.4 1.1 0.6 1.7 0.3 0.8 0.5 1.5 0.5 1.9v2.4h0.9v-2.4l1.1-3.6zM9 4.5v-1.5c0-0.5-0.1-0.8-0.3-1.1s-0.5-0.4-0.9-0.4c-0.4 0-0.7 0.2-0.9 0.5-0.2 0.2-0.3 0.5-0.3 1v1.6c0 0.5 0.1 0.8 0.3 1 0.2 0.3 0.5 0.4 0.9 0.4s0.7-0.2 0.9-0.5c0.2-0.1 0.3-0.5 0.3-1zM8.2 4.7c0 0.4-0.1 0.6-0.4 0.6s-0.4-0.2-0.4-0.6v-1.9c0-0.4 0.1-0.6 0.4-0.6s0.4 0.2 0.4 0.6v1.9zM12 6v-4.5h-0.8v3.4c-0.2 0.3-0.3 0.4-0.5 0.4-0.1 0-0.2-0.1-0.2-0.2 0 0 0-0.1 0-0.3v-3.3h-0.8v3.5c0 0.3 0 0.5 0.1 0.7 0 0.2 0.2 0.3 0.5 0.3s0.6-0.2 0.9-0.5v0.5h0.8z"></path><path d="M12.4 10.5c-0.3 0-0.4 0.2-0.4 0.6v0.4h0.8v-0.4c0-0.4-0.1-0.6-0.4-0.6z"></path><path d="M9.5 10.5c-0.1 0-0.3 0.1-0.4 0.2v2.7c0.1 0.1 0.3 0.2 0.4 0.2 0.2 0 0.3-0.2 0.3-0.6v-1.9c0-0.4-0.1-0.6-0.3-0.6z"></path><path d="M14.4 8.3c-0.2-0.7-0.8-1.3-1.4-1.3-1.6-0.2-3.3-0.2-5-0.2s-3.3 0-5 0.2c-0.6 0-1.2 0.6-1.4 1.3-0.2 1-0.2 2.1-0.2 3.1s0 2.1 0.2 3.1c0.2 0.7 0.7 1.2 1.4 1.3 1.7 0.2 3.3 0.2 5 0.2s3.3 0 5-0.2c0.7-0.1 1.3-0.6 1.4-1.3 0.2-1 0.2-2.1 0.2-3.1s0-2.1-0.2-3.1zM5.2 9.2h-1v5.1h-0.9v-5.1h-0.9v-0.9h2.8v0.9zM7.6 14.3h-0.8v-0.5c-0.3 0.4-0.6 0.5-0.9 0.5s-0.4-0.1-0.5-0.3c0-0.1-0.1-0.3-0.1-0.7v-3.5h0.8v3.2c0 0.2 0 0.3 0 0.3 0 0.1 0.1 0.2 0.2 0.2 0.2 0 0.3-0.1 0.5-0.4v-3.3h0.8v4.5zM10.6 12.9c0 0.4 0 0.7-0.1 0.9-0.1 0.3-0.3 0.5-0.6 0.5s-0.6-0.2-0.8-0.5v0.4h-0.8v-5.9h0.8v1.9c0.3-0.3 0.5-0.5 0.8-0.5s0.5 0.2 0.6 0.5c0.1 0.2 0.1 0.5 0.1 0.9v1.8zM13.6 12.2h-1.6v0.8c0 0.4 0.1 0.6 0.4 0.6 0.2 0 0.3-0.1 0.4-0.3 0 0 0-0.2 0-0.5h0.8v0.1c0 0.3 0 0.4 0 0.5 0 0.2-0.1 0.3-0.2 0.5-0.2 0.3-0.5 0.5-1 0.5-0.4 0-0.7-0.2-1-0.5-0.2-0.2-0.3-0.6-0.3-1v-1.5c0-0.5 0.1-0.8 0.2-1 0.2-0.3 0.5-0.5 1-0.5 0.4 0 0.7 0.2 0.9 0.5 0.2 0.2 0.2 0.6 0.2 1v0.8z"></path></g>
 </defs></svg>
 </iron-iconset-svg>`;
-document.head.appendChild($_documentContainer$v.content);
+document.head.appendChild($_documentContainer$x.content);
 
-const $_documentContainer$w = html`<dom-module id="lumo-notification-card" theme-for="vaadin-notification-card">
+const $_documentContainer$y = html`<dom-module id="lumo-notification-card" theme-for="vaadin-notification-card">
   <template>
     <style>
       :host {
@@ -42174,7 +42671,7 @@ const $_documentContainer$w = html`<dom-module id="lumo-notification-card" theme
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$w.content);
+document.head.appendChild($_documentContainer$y.content);
 
 /**
 @license
@@ -42778,8 +43275,8 @@ customElements.define(NotificationContainer.is, NotificationContainer);
 customElements.define(NotificationCard.is, NotificationCard);
 customElements.define(NotificationElement.is, NotificationElement);
 
-const $_documentContainer$x = document.createElement('template');
-$_documentContainer$x.innerHTML = `<dom-module id="lumo-ordered-layout">
+const $_documentContainer$z = document.createElement('template');
+$_documentContainer$z.innerHTML = `<dom-module id="lumo-ordered-layout">
   <template>
     <style>
       :host([theme~="margin"]) {
@@ -42792,10 +43289,10 @@ $_documentContainer$x.innerHTML = `<dom-module id="lumo-ordered-layout">
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$x.content);
+document.head.appendChild($_documentContainer$z.content);
 
-const $_documentContainer$y = document.createElement('template');
-$_documentContainer$y.innerHTML = `<dom-module id="lumo-horizontal-layout" theme-for="vaadin-horizontal-layout">
+const $_documentContainer$A = document.createElement('template');
+$_documentContainer$A.innerHTML = `<dom-module id="lumo-horizontal-layout" theme-for="vaadin-horizontal-layout">
   <template>
     <style include="lumo-ordered-layout">
       :host([theme~="spacing-xs"]) ::slotted(*) {
@@ -42849,7 +43346,7 @@ $_documentContainer$y.innerHTML = `<dom-module id="lumo-horizontal-layout" theme
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$y.content);
+document.head.appendChild($_documentContainer$A.content);
 
 /**
 @license
@@ -42933,7 +43430,7 @@ class HorizontalLayoutElement extends ElementMixin$1(ThemableMixin(PolymerElemen
 
 customElements.define(HorizontalLayoutElement.is, HorizontalLayoutElement);
 
-const $_documentContainer$z = html`<dom-module id="lumo-progress-bar" theme-for="vaadin-progress-bar">
+const $_documentContainer$B = html`<dom-module id="lumo-progress-bar" theme-for="vaadin-progress-bar">
   <template>
     <style>
       :host {
@@ -43067,7 +43564,7 @@ const $_documentContainer$z = html`<dom-module id="lumo-progress-bar" theme-for=
     }
   </style>
 </custom-style>`;
-document.head.appendChild($_documentContainer$z.content);
+document.head.appendChild($_documentContainer$B.content);
 /* Safari fails to declare animations for pseudo elements inside a shadow DOM */
 
 /**
@@ -43257,7 +43754,7 @@ class ProgressBarElement extends ElementMixin$1(ThemableMixin(ProgressMixin(Poly
 
 customElements.define(ProgressBarElement.is, ProgressBarElement);
 
-const $_documentContainer$A = html`<dom-module id="lumo-radio-button" theme-for="vaadin-radio-button">
+const $_documentContainer$C = html`<dom-module id="lumo-radio-button" theme-for="vaadin-radio-button">
   <template>
     <style>
       :host {
@@ -43376,7 +43873,7 @@ const $_documentContainer$A = html`<dom-module id="lumo-radio-button" theme-for=
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$A.content);
+document.head.appendChild($_documentContainer$C.content);
 
 /**
 @license
@@ -43643,7 +44140,7 @@ class RadioButtonElement extends ElementMixin$1(ControlStateMixin(ThemableMixin(
 
 customElements.define(RadioButtonElement.is, RadioButtonElement);
 
-const $_documentContainer$B = html`<dom-module id="lumo-select" theme-for="vaadin-select">
+const $_documentContainer$D = html`<dom-module id="lumo-select" theme-for="vaadin-select">
   <template>
     <style include="lumo-field-button">
       :host {
@@ -43736,15 +44233,15 @@ const $_documentContainer$B = html`<dom-module id="lumo-select" theme-for="vaadi
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$B.content);
+document.head.appendChild($_documentContainer$D.content);
 
 /**
 @license
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-const $_documentContainer$C = document.createElement('template');
-$_documentContainer$C.innerHTML = `<dom-module id="vaadin-select-overlay-styles" theme-for="vaadin-select-overlay">
+const $_documentContainer$E = document.createElement('template');
+$_documentContainer$E.innerHTML = `<dom-module id="vaadin-select-overlay-styles" theme-for="vaadin-select-overlay">
   <template>
     <style>
       :host {
@@ -43754,7 +44251,7 @@ $_documentContainer$C.innerHTML = `<dom-module id="vaadin-select-overlay-styles"
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$C.content);
+document.head.appendChild($_documentContainer$E.content);
 /**
   * The overlay element.
   *
@@ -43839,8 +44336,8 @@ customElements.define(SelectTextFieldElement.is, SelectTextFieldElement);
 Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-const $_documentContainer$D = document.createElement('template');
-$_documentContainer$D.innerHTML = `<custom-style>
+const $_documentContainer$F = document.createElement('template');
+$_documentContainer$F.innerHTML = `<custom-style>
   <style>
     @font-face {
       font-family: "vaadin-select-icons";
@@ -43850,7 +44347,7 @@ $_documentContainer$D.innerHTML = `<custom-style>
     }
   </style>
 </custom-style>`;
-document.head.appendChild($_documentContainer$D.content);
+document.head.appendChild($_documentContainer$F.content);
 /**
  *
  * `<vaadin-select>` is a Web Component for selecting values from a list of items. The content of the
@@ -44497,7 +44994,7 @@ class SelectElement extends ElementMixin$1(ControlStateMixin(ThemableMixin(Theme
 
 customElements.define(SelectElement.is, SelectElement);
 
-const $_documentContainer$E = html`<dom-module id="lumo-split-layout" theme-for="vaadin-split-layout">
+const $_documentContainer$G = html`<dom-module id="lumo-split-layout" theme-for="vaadin-split-layout">
   <template>
     <style>
       [part="splitter"] {
@@ -44589,7 +45086,7 @@ const $_documentContainer$E = html`<dom-module id="lumo-split-layout" theme-for=
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$E.content);
+document.head.appendChild($_documentContainer$G.content);
 
 /**
 @license
@@ -44929,7 +45426,7 @@ class SplitLayoutElement extends ElementMixin$1(ThemableMixin(GestureEventListen
 
 customElements.define(SplitLayoutElement.is, SplitLayoutElement);
 
-const $_documentContainer$F = html`<dom-module id="lumo-tab" theme-for="vaadin-tab">
+const $_documentContainer$H = html`<dom-module id="lumo-tab" theme-for="vaadin-tab">
   <template>
     <style>
       :host {
@@ -45118,7 +45615,7 @@ const $_documentContainer$F = html`<dom-module id="lumo-tab" theme-for="vaadin-t
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$F.content);
+document.head.appendChild($_documentContainer$H.content);
 
 /**
 @license
@@ -45191,7 +45688,7 @@ class TabElement extends ElementMixin$1(ThemableMixin(ItemMixin(PolymerElement))
 
 customElements.define(TabElement.is, TabElement);
 
-const $_documentContainer$G = html`<dom-module id="lumo-tabs" theme-for="vaadin-tabs">
+const $_documentContainer$I = html`<dom-module id="lumo-tabs" theme-for="vaadin-tabs">
   <template>
     <style>
       :host {
@@ -45372,7 +45869,7 @@ const $_documentContainer$G = html`<dom-module id="lumo-tabs" theme-for="vaadin-
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$G.content);
+document.head.appendChild($_documentContainer$I.content);
 
 /**
 @license
@@ -45754,7 +46251,7 @@ class ComboBoxLightElement extends ThemePropertyMixin(ThemableMixin(ComboBoxData
 
 customElements.define(ComboBoxLightElement.is, ComboBoxLightElement);
 
-const $_documentContainer$H = html`<dom-module id="lumo-time-picker" theme-for="vaadin-time-picker">
+const $_documentContainer$J = html`<dom-module id="lumo-time-picker" theme-for="vaadin-time-picker">
   <template>
     <style include="lumo-field-button">
       [part~="toggle-button"]::before {
@@ -45763,7 +46260,7 @@ const $_documentContainer$H = html`<dom-module id="lumo-time-picker" theme-for="
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$H.content);
+document.head.appendChild($_documentContainer$J.content);
 
 /**
 @license
@@ -46426,7 +46923,7 @@ class TimePickerElement extends ElementMixin$1(ControlStateMixin(ThemableMixin(T
 
 customElements.define(TimePickerElement.is, TimePickerElement);
 
-const $_documentContainer$I = html`<dom-module id="lumo-upload" theme-for="vaadin-upload">
+const $_documentContainer$K = html`<dom-module id="lumo-upload" theme-for="vaadin-upload">
   <template>
     <style>
       :host {
@@ -46596,10 +47093,10 @@ const $_documentContainer$I = html`<dom-module id="lumo-upload" theme-for="vaadi
     </style>
   </template>
 </dom-module>`;
-document.head.appendChild($_documentContainer$I.content);
+document.head.appendChild($_documentContainer$K.content);
 
-const $_documentContainer$J = document.createElement('template');
-$_documentContainer$J.innerHTML = `<custom-style>
+const $_documentContainer$L = document.createElement('template');
+$_documentContainer$L.innerHTML = `<custom-style>
   <style>
     @font-face {
       font-family: 'vaadin-upload-icons';
@@ -46609,7 +47106,7 @@ $_documentContainer$J.innerHTML = `<custom-style>
     }
   </style>
 </custom-style>`;
-document.head.appendChild($_documentContainer$J.content);
+document.head.appendChild($_documentContainer$L.content);
 
 /**
 @license

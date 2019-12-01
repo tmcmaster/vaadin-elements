@@ -1,2 +1,2 @@
 import '../src/index.js';
-import '../docs/main.js';
+import '../docs/main-new.js';

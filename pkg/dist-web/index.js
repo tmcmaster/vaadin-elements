@@ -22,6 +22,7 @@ import { Base } from '@polymer/polymer/polymer-legacy.js';
 import { IronScrollTargetBehavior } from '@polymer/iron-scroll-target-behavior/iron-scroll-target-behavior.js';
 import { flush as flush$1, dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
+import ',/vaadin-grid/vaadin-grid-column.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import { dashToCamelCase } from '@polymer/polymer/lib/utils/case-map.js';
