@@ -27,8 +27,8 @@ To update:
   then delete this comment!
 */
 import "@polymer/polymer/polymer-legacy.js";
-import { IronResizableBehavior } from "@polymer/iron-resizable-behavior/iron-resizable-behavior.js";
-import { IronScrollTargetBehavior } from "@polymer/iron-scroll-target-behavior/iron-scroll-target-behavior.js";
+import { IronResizableBehavior } from "@wonkytech/polymer-elements";
+import { IronScrollTargetBehavior } from "@wonkytech/polymer-elements";
 import { animationFrame, idlePeriod, microTask } from "@polymer/polymer/lib/utils/async.js";
 import { Class } from "@polymer/polymer/lib/legacy/class.js";
 import { flush, enqueueDebouncer } from "@polymer/polymer/lib/utils/flush.js";

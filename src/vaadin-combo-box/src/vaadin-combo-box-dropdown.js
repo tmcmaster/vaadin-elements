@@ -6,7 +6,7 @@ This program is available under Apache License Version 2.0, available at https:/
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { DisableUpgradeMixin } from "@polymer/polymer/lib/mixins/disable-upgrade-mixin.js";
 import { OverlayElement } from "../../vaadin-overlay/src/vaadin-overlay.js";
-import { IronResizableBehavior } from "@polymer/iron-resizable-behavior/iron-resizable-behavior.js";
+import { IronResizableBehavior } from "@wonkytech/polymer-elements";
 import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 import { mixinBehaviors } from "@polymer/polymer/lib/legacy/class.js";
 /**

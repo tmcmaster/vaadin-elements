@@ -31,6 +31,36 @@ do
   perl -spi -e 's/\@polymer\/iron-a11y-keys-behavior\/iron-a11y-keys-behavior.js/\@wonkytech\/polymer-elements/g' "$i";
 done
 
+for i in `grep -rl '"@polymer\/iron-resizable-behavior\/iron-resizable-behavior.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-resizable-behavior\/iron-resizable-behavior.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-list\/iron-list.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-list\/iron-list.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-media-query\/iron-media-query.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-media-query\/iron-media-query.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-scroll-target-behavior\/iron-scroll-target-behavior.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-scroll-target-behavior\/iron-scroll-target-behavior.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-icon\/iron-icon.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-icon\/iron-icon.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-iconset-svg\/iron-iconset-svg.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-iconset-svg\/iron-iconset-svg.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
 cp include/src/index.js src/
 
 pika build;

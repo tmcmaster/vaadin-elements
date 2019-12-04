@@ -1,4 +1,4 @@
-import "@polymer/iron-icon/iron-icon.js";
+import "@wonkytech/polymer-elements";
 import './iconset.js';
 /**
 @license

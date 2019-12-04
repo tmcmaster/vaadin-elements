@@ -1,4 +1,4 @@
-import "@polymer/iron-iconset-svg/iron-iconset-svg.js";
+import "@wonkytech/polymer-elements";
 const $_documentContainer = document.createElement('template');
 $_documentContainer.innerHTML = `<iron-iconset-svg name="vaadin" size="16">
 <svg><defs>

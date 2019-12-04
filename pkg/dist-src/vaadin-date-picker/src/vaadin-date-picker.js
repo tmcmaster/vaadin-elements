@@ -5,7 +5,7 @@ This program is available under Apache License Version 2.0, available at https:/
 */
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { GestureEventListeners } from "@polymer/polymer/lib/mixins/gesture-event-listeners.js";
-import "@polymer/iron-media-query/iron-media-query.js";
+import "@wonkytech/polymer-elements";
 import { ThemableMixin } from "../../vaadin-themable-mixin/vaadin-themable-mixin.js";
 import { ThemePropertyMixin } from "../../vaadin-themable-mixin/vaadin-theme-property-mixin.js";
 import { ControlStateMixin } from "../../vaadin-control-state-mixin/vaadin-control-state-mixin.js";

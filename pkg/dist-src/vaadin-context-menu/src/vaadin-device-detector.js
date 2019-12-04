@@ -4,7 +4,7 @@ Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
-import "@polymer/iron-media-query/iron-media-query.js";
+import "@wonkytech/polymer-elements";
 import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 /**
  * Element for internal use only.

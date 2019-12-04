@@ -5,7 +5,7 @@ This program is available under Apache License Version 2.0, available at https:/
 */
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { GestureEventListeners } from "@polymer/polymer/lib/mixins/gesture-event-listeners.js";
-import "@polymer/iron-media-query/iron-media-query.js";
+import "@wonkytech/polymer-elements";
 import { IronA11yKeysBehavior } from "@wonkytech/polymer-elements";
 import { IronA11yAnnouncer } from "@wonkytech/polymer-elements";
 import "../../vaadin-button/src/vaadin-button.js";

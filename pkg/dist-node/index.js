@@ -13,18 +13,12 @@ var templatize_js = require('@polymer/polymer/lib/utils/templatize.js');
 var renderStatus_js = require('@polymer/polymer/lib/utils/render-status.js');
 var flattenedNodesObserver_js = require('@polymer/polymer/lib/utils/flattened-nodes-observer.js');
 var polymerElements = require('@wonkytech/polymer-elements');
-require('@polymer/iron-list/iron-list.js');
 var disableUpgradeMixin_js = require('@polymer/polymer/lib/mixins/disable-upgrade-mixin.js');
-var ironResizableBehavior_js = require('@polymer/iron-resizable-behavior/iron-resizable-behavior.js');
 var class_js = require('@polymer/polymer/lib/legacy/class.js');
-require('@polymer/iron-media-query/iron-media-query.js');
 require('@polymer/polymer/lib/elements/dom-repeat.js');
 var polymerLegacy_js = require('@polymer/polymer/polymer-legacy.js');
-var ironScrollTargetBehavior_js = require('@polymer/iron-scroll-target-behavior/iron-scroll-target-behavior.js');
 var polymer_dom_js = require('@polymer/polymer/lib/legacy/polymer.dom.js');
 var settings_js = require('@polymer/polymer/lib/utils/settings.js');
-require('@polymer/iron-icon/iron-icon.js');
-require('@polymer/iron-iconset-svg/iron-iconset-svg.js');
 var caseMap_js = require('@polymer/polymer/lib/utils/case-map.js');
 
 class Lumo extends HTMLElement {
@@ -7011,7 +7005,7 @@ customElements.define(ComboBoxOverlayElement.is, ComboBoxOverlayElement);
  * @private
  */
 
-class ComboBoxDropdownElement extends disableUpgradeMixin_js.DisableUpgradeMixin(class_js.mixinBehaviors(ironResizableBehavior_js.IronResizableBehavior, polymerElement_js.PolymerElement)) {
+class ComboBoxDropdownElement extends disableUpgradeMixin_js.DisableUpgradeMixin(class_js.mixinBehaviors(polymerElements.IronResizableBehavior, polymerElement_js.PolymerElement)) {
   static get template() {
     return htmlTag_js.html`
     <style>
@@ -12507,7 +12501,7 @@ This program is available under Apache License Version 2.0, available at https:/
  * @polymerMixin
  */
 
-const DatePickerMixin = subclass => class VaadinDatePickerMixin extends class_js.mixinBehaviors([ironResizableBehavior_js.IronResizableBehavior], subclass) {
+const DatePickerMixin = subclass => class VaadinDatePickerMixin extends class_js.mixinBehaviors([polymerElements.IronResizableBehavior], subclass) {
   static get properties() {
     return {
       /**
@@ -14099,7 +14093,7 @@ This program is available under Apache License Version 2.0, available at https:/
  * @demo demo/index.html
  */
 
-class FormLayoutElement extends ElementMixin(ThemableMixin(class_js.mixinBehaviors([ironResizableBehavior_js.IronResizableBehavior], polymerElement_js.PolymerElement))) {
+class FormLayoutElement extends ElementMixin(ThemableMixin(class_js.mixinBehaviors([polymerElements.IronResizableBehavior], polymerElement_js.PolymerElement))) {
   static get template() {
     return htmlTag_js.html`
     <style>
@@ -14873,7 +14867,7 @@ var ANIMATION_FRAME = async_js.animationFrame;
 var IDLE_TIME = async_js.idlePeriod;
 var MICRO_TASK = async_js.microTask;
 const PolymerIronList = class_js.Class({
-  behaviors: [ironResizableBehavior_js.IronResizableBehavior, ironScrollTargetBehavior_js.IronScrollTargetBehavior],
+  behaviors: [polymerElements.IronResizableBehavior, polymerElements.IronScrollTargetBehavior],
 
   /**
    * The ratio of hidden tiles that should remain in the scroll direction.
@@ -24500,7 +24494,7 @@ document.head.appendChild($_documentContainer$F.content);
  * @demo demo/index.html
  */
 
-class SelectElement extends ElementMixin(ControlStateMixin(ThemableMixin(ThemePropertyMixin(class_js.mixinBehaviors(ironResizableBehavior_js.IronResizableBehavior, polymerElement_js.PolymerElement))))) {
+class SelectElement extends ElementMixin(ControlStateMixin(ThemableMixin(ThemePropertyMixin(class_js.mixinBehaviors(polymerElements.IronResizableBehavior, polymerElement_js.PolymerElement))))) {
   static get template() {
     return htmlTag_js.html`
     <style>
@@ -25292,7 +25286,7 @@ This program is available under Apache License Version 2.0, available at https:/
  * @demo demo/index.html
  */
 
-class SplitLayoutElement extends ElementMixin(ThemableMixin(gestureEventListeners_js.GestureEventListeners(class_js.mixinBehaviors([ironResizableBehavior_js.IronResizableBehavior], polymerElement_js.PolymerElement)))) {
+class SplitLayoutElement extends ElementMixin(ThemableMixin(gestureEventListeners_js.GestureEventListeners(class_js.mixinBehaviors([polymerElements.IronResizableBehavior], polymerElement_js.PolymerElement)))) {
   static get template() {
     return htmlTag_js.html`
     <style>
@@ -25965,7 +25959,7 @@ const safari10 = /Apple.* Version\/(9|10)/.test(navigator.userAgent);
  * @demo demo/index.html
  */
 
-class TabsElement extends ElementMixin(ListMixin(ThemableMixin(class_js.mixinBehaviors([ironResizableBehavior_js.IronResizableBehavior], polymerElement_js.PolymerElement)))) {
+class TabsElement extends ElementMixin(ListMixin(ThemableMixin(class_js.mixinBehaviors([polymerElements.IronResizableBehavior], polymerElement_js.PolymerElement)))) {
   static get template() {
     return htmlTag_js.html`
     <style>

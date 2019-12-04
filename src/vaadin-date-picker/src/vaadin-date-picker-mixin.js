@@ -4,7 +4,7 @@ Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
 import { IronA11yKeysBehavior } from "@wonkytech/polymer-elements";
-import { IronResizableBehavior } from "@polymer/iron-resizable-behavior/iron-resizable-behavior.js";
+import { IronResizableBehavior } from "@wonkytech/polymer-elements";
 import { DatePickerHelper } from './vaadin-date-picker-helper.js';
 import { addListener } from "@polymer/polymer/lib/utils/gestures.js";
 import { mixinBehaviors } from "@polymer/polymer/lib/legacy/class.js";

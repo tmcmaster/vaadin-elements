@@ -6,7 +6,7 @@ This program is available under Apache License Version 2.0, available at https:/
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { ThemableMixin } from "../../vaadin-themable-mixin/vaadin-themable-mixin.js";
 import { ListMixin } from "../../vaadin-list-mixin/vaadin-list-mixin.js";
-import { IronResizableBehavior } from "@polymer/iron-resizable-behavior/iron-resizable-behavior.js";
+import { IronResizableBehavior } from "@wonkytech/polymer-elements";
 import { ElementMixin } from "../../vaadin-element-mixin/vaadin-element-mixin.js";
 import './vaadin-tab.js';
 import { html } from "@polymer/polymer/lib/utils/html-tag.js";

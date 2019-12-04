@@ -10,19 +10,13 @@ import { addListener, register, prevent, gestures, removeListener, setTouchActio
 import { templatize } from '@polymer/polymer/lib/utils/templatize.js';
 import { afterNextRender, beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import { IronA11yAnnouncer, IronA11yKeysBehavior } from '@wonkytech/polymer-elements';
-import '@polymer/iron-list/iron-list.js';
+import { IronA11yAnnouncer, IronA11yKeysBehavior, IronResizableBehavior, IronScrollTargetBehavior } from '@wonkytech/polymer-elements';
 import { DisableUpgradeMixin } from '@polymer/polymer/lib/mixins/disable-upgrade-mixin.js';
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import { mixinBehaviors, Class } from '@polymer/polymer/lib/legacy/class.js';
-import '@polymer/iron-media-query/iron-media-query.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import { Base } from '@polymer/polymer/polymer-legacy.js';
-import { IronScrollTargetBehavior } from '@polymer/iron-scroll-target-behavior/iron-scroll-target-behavior.js';
 import { flush as flush$1, dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import { dashToCamelCase } from '@polymer/polymer/lib/utils/case-map.js';
 
 class Lumo extends HTMLElement {
