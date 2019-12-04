@@ -37,7 +37,7 @@
     "dependencies": {
         "lit-element": "^2.0.1",
         "lit-html": "^1.0.0",
-        "@wonkytech/polymer-elements": "0.0.8"
+        "@wonkytech/polymer-elements": "^0.0.8"
     },
     "devDependencies": {
         "@vaadin/vaadin": "^14.0.14",

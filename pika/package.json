@@ -3,7 +3,7 @@
         "pika:build": "npm install && npx @pika/web --dest ../docs/web_modules"
     },
     "dependencies": {
-        "@wonkytech/vaadin-elements": "^0.0.19",
-        "@wonkytech/tm-examples": "^0.0.17"
+        "@wonkytech/tm-examples": "^0.0.19",
+        "@wonkytech/vaadin-elements": "^0.0.20"
     }
 }
