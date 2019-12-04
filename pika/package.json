@@ -4,6 +4,6 @@
     },
     "dependencies": {
         "@wonkytech/tm-examples": "^0.0.19",
-        "@wonkytech/vaadin-elements": "^0.0.23"
+        "@wonkytech/vaadin-elements": "^0.0.25"
     }
 }
