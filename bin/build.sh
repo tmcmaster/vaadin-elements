@@ -1,10 +1,12 @@
 #!/bin/bash
 
 npm install
-cp include/npm/index.* node_modules;
-(cd node_modules; polymer build);
+polymer build
+#cp include/npm/index.* node_modules;
+#(cd node_modules; polymer build);
 #rsync -a node_modules/build/default/\@vaadin/ src/
 rsync -a --exclude polymer --exclude mode_modules build/default/node_modules/@vaadin/ src/
+rm -rf src/*/node_modules
 
 for i in `grep -rl '"../../../../@polymer/' src`;
 do
