@@ -7,8 +7,8 @@ import { timeOut } from "@polymer/polymer/lib/utils/async.js";
 import { Debouncer } from "@polymer/polymer/lib/utils/debounce.js";
 import { flush } from "@polymer/polymer/lib/utils/flush.js";
 import { templatize } from "@polymer/polymer/lib/utils/templatize.js";
-import { IronA11yAnnouncer } from "@polymer/iron-a11y-announcer/iron-a11y-announcer.js";
-import { IronA11yKeysBehavior } from "@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js";
+import { IronA11yAnnouncer } from "@wonkytech/polymer-elements";
+import { IronA11yKeysBehavior } from "@wonkytech/polymer-elements";
 import { FlattenedNodesObserver } from "@polymer/polymer/lib/utils/flattened-nodes-observer.js";
 import { ComboBoxPlaceholder } from './vaadin-combo-box-placeholder.js';
 /**

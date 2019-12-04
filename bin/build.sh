@@ -21,6 +21,16 @@ do
   perl -spi -e 's/..\/..\/\@polymer/\@polymer/g' "$i";
 done
 
+for i in `grep -rl '"@polymer\/iron-a11y-announcer\/iron-a11y-announcer.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-a11y-announcer\/iron-a11y-announcer.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
+for i in `grep -rl '"@polymer\/iron-a11y-keys-behavior\/iron-a11y-keys-behavior.js' src`;
+do
+  perl -spi -e 's/\@polymer\/iron-a11y-keys-behavior\/iron-a11y-keys-behavior.js/\@wonkytech\/polymer-elements/g' "$i";
+done
+
 cp include/src/index.js src/
 
 pika build;

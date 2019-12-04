@@ -12,8 +12,7 @@ var gestures_js = require('@polymer/polymer/lib/utils/gestures.js');
 var templatize_js = require('@polymer/polymer/lib/utils/templatize.js');
 var renderStatus_js = require('@polymer/polymer/lib/utils/render-status.js');
 var flattenedNodesObserver_js = require('@polymer/polymer/lib/utils/flattened-nodes-observer.js');
-var ironA11yAnnouncer_js = require('@polymer/iron-a11y-announcer/iron-a11y-announcer.js');
-var ironA11yKeysBehavior_js = require('@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js');
+var polymerElements = require('@wonkytech/polymer-elements');
 require('@polymer/iron-list/iron-list.js');
 var disableUpgradeMixin_js = require('@polymer/polymer/lib/mixins/disable-upgrade-mixin.js');
 var ironResizableBehavior_js = require('@polymer/iron-resizable-behavior/iron-resizable-behavior.js');
@@ -5974,7 +5973,7 @@ const ComboBoxMixin = subclass => class VaadinComboBoxMixinElement extends subcl
     super.ready();
     this.addEventListener('focusout', this._boundOnFocusout);
     this._lastCommittedValue = this.value;
-    ironA11yAnnouncer_js.IronA11yAnnouncer.requestAvailability(); // 2.0 does not support 'overlay.selection-changed' syntax in listeners
+    polymerElements.IronA11yAnnouncer.requestAvailability(); // 2.0 does not support 'overlay.selection-changed' syntax in listeners
 
     this.$.overlay.addEventListener('selection-changed', this._boundOverlaySelectedItemChanged);
     this.addEventListener('vaadin-combo-box-dropdown-closed', this._boundClose);
@@ -6118,7 +6117,7 @@ const ComboBoxMixin = subclass => class VaadinComboBoxMixinElement extends subcl
   }
 
   _isEventKey(e, k) {
-    return ironA11yKeysBehavior_js.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k);
+    return polymerElements.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k);
   }
 
   _getItemLabel(item) {
@@ -11871,7 +11870,7 @@ class DatePickerOverlayContentElement extends ThemableMixin(ThemePropertyMixin(g
     this._toggleAnimateClass(true);
 
     gestures_js.setTouchAction(this.$.scrollers, 'pan-y');
-    ironA11yAnnouncer_js.IronA11yAnnouncer.requestAvailability();
+    polymerElements.IronA11yAnnouncer.requestAvailability();
   }
 
   announceFocusedDate() {
@@ -12253,7 +12252,7 @@ class DatePickerOverlayContentElement extends ThemableMixin(ThemePropertyMixin(g
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
 
-      if (ironA11yKeysBehavior_js.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k)) {
+      if (polymerElements.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k)) {
         return k;
       }
     }
@@ -13256,7 +13255,7 @@ const DatePickerMixin = subclass => class VaadinDatePickerMixin extends class_js
     for (var i = 0; i < keys.length; i++) {
       var k = keys[i];
 
-      if (ironA11yKeysBehavior_js.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k)) {
+      if (polymerElements.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k)) {
         return k;
       }
     }
@@ -26703,9 +26702,9 @@ class TimePickerElement extends ElementMixin(ControlStateMixin(ThemableMixin(The
 
     const stepResolution = this.__validDayDivisor(this.step) && this.step || 60;
 
-    if (ironA11yKeysBehavior_js.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, 'down')) {
+    if (polymerElements.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, 'down')) {
       this.__onArrowPressWithStep(-stepResolution);
-    } else if (ironA11yKeysBehavior_js.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, 'up')) {
+    } else if (polymerElements.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, 'up')) {
       this.__onArrowPressWithStep(stepResolution);
     }
   }

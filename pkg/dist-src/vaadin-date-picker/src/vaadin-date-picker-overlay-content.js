@@ -6,8 +6,8 @@ This program is available under Apache License Version 2.0, available at https:/
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { GestureEventListeners } from "@polymer/polymer/lib/mixins/gesture-event-listeners.js";
 import "@polymer/iron-media-query/iron-media-query.js";
-import { IronA11yKeysBehavior } from "@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js";
-import { IronA11yAnnouncer } from "@polymer/iron-a11y-announcer/iron-a11y-announcer.js";
+import { IronA11yKeysBehavior } from "@wonkytech/polymer-elements";
+import { IronA11yAnnouncer } from "@wonkytech/polymer-elements";
 import "../../vaadin-button/src/vaadin-button.js";
 import { ThemableMixin } from "../../vaadin-themable-mixin/vaadin-themable-mixin.js";
 import { ThemePropertyMixin } from "../../vaadin-themable-mixin/vaadin-theme-property-mixin.js";

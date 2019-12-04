@@ -8,7 +8,7 @@ import { ThemableMixin } from "../../vaadin-themable-mixin/vaadin-themable-mixin
 import { ThemePropertyMixin } from "../../vaadin-themable-mixin/vaadin-theme-property-mixin.js";
 import { ElementMixin } from "../../vaadin-element-mixin/vaadin-element-mixin.js";
 import "../../vaadin-combo-box/src/vaadin-combo-box-light.js";
-import { IronA11yKeysBehavior } from "@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js";
+import { IronA11yKeysBehavior } from "@wonkytech/polymer-elements";
 import './vaadin-time-picker-text-field.js';
 import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 import { ControlStateMixin } from "../../vaadin-control-state-mixin/vaadin-control-state-mixin.js";

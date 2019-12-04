@@ -10,8 +10,7 @@ import { addListener, register, prevent, gestures, removeListener, setTouchActio
 import { templatize } from '@polymer/polymer/lib/utils/templatize.js';
 import { afterNextRender, beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import { IronA11yAnnouncer } from '@polymer/iron-a11y-announcer/iron-a11y-announcer.js';
-import { IronA11yKeysBehavior } from '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
+import { IronA11yAnnouncer, IronA11yKeysBehavior } from '@wonkytech/polymer-elements';
 import '@polymer/iron-list/iron-list.js';
 import { DisableUpgradeMixin } from '@polymer/polymer/lib/mixins/disable-upgrade-mixin.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
