@@ -22,3 +22,4 @@ import '@vaadin/vaadin-tabs/vaadin-tabs.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
 import '@vaadin/vaadin-time-picker/vaadin-time-picker.js';
 import '@vaadin/vaadin-upload/vaadin-upload.js';
+import '@vaadin/vaadin-core/vaadin-core.js';
