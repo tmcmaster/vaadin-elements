@@ -1,8 +1,10 @@
 {
     "scripts": {
-        "pika:build": "npm install && npx @pika/web --dest ../docs/web_modules"
+        "pika:build": "npm install && rm -rf node_modules/@wonkytech/vaadin-elements/node_modules && npx @pika/web --dest ../docs/web_modules"
     },
     "dependencies": {
+        "lit-element": "^2.0.1",
+        "lit-html": "^1.0.0",
         "@wonkytech/tm-examples": "latest",
         "@wonkytech/vaadin-elements": "latest"
     }
