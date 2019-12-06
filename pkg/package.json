@@ -1,7 +1,7 @@
 {
   "name": "@wonkytech/vaadin-elements",
   "description": "Attempting to build a Pika package for the Vaadin web components.",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "license": "MIT",
   "files": [
     "dist-*/",
@@ -14,7 +14,7 @@
   "dependencies": {
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0",
-    "@wonkytech/polymer-elements": "0.0.13"
+    "@wonkytech/polymer-elements": "latest"
   },
   "devDependencies": {
     "@vaadin/vaadin": "^14.0.14",
