@@ -1,7 +1,7 @@
 {
   "name": "@wonkytech/vaadin-elements",
   "description": "Attempting to build a Pika package for the Vaadin web components.",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "license": "MIT",
   "files": [
     "dist-*/",
