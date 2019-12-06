@@ -1,5 +1,7 @@
 import { a as directive, e as AttributePart, j as PropertyPart, h as html, n as noChange, N as NodePart, l as templateFactory } from '../common/lit-html-9957b87e.js';
 import { query, property, css, customElement, eventOptions, LitElement } from '../lit-element.js';
+import '../common/disable-upgrade-mixin-ae41579f.js';
+import './polymer-elements.js';
 import './vaadin-elements.js';
 
 /*! *****************************************************************************
