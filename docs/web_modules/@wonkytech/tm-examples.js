@@ -1,7 +1,7 @@
-import { a as directive, e as AttributePart, j as PropertyPart, h as html, n as noChange, N as NodePart, l as templateFactory } from '../common/lit-html-9957b87e.js';
-import { query, property, css, customElement, eventOptions, LitElement } from '../lit-element.js';
 import '../common/disable-upgrade-mixin-ae41579f.js';
 import './polymer-elements.js';
+import { a as directive, e as AttributePart, j as PropertyPart, h as html, n as noChange, N as NodePart, l as templateFactory } from '../common/lit-html-9957b87e.js';
+import { query, property, css, customElement, eventOptions, LitElement } from '../lit-element.js';
 import './vaadin-elements.js';
 
 /*! *****************************************************************************
@@ -13122,16 +13122,16 @@ function parseSectionSource(source) {
     const sectionSource = removeIndent(source.substr(start, end - start));
     sourceList.push(sectionSource);
     pointer = end + END.length;
-  }
+  } //console.log('---- RESULTS: ', sourceList);
 
-  console.log('---- RESULTS: ', sourceList);
+
   return sourceList;
 }
 
 function removeIndent(source) {
-  console.log('Source: ', source);
-  const lines = source.split('\n').filter(line => line.search(/\S/) > -1);
-  console.log('Lines: ', lines);
+  //console.log('Source: ', source);
+  const lines = source.split('\n').filter(line => line.search(/\S/) > -1); //console.log('Lines: ', lines);
+
   const shortestLeadingWhitespace = Math.min(lines.map(line => line.search(/\S/)).filter(n => n > -1).reduce((a, b) => a < b ? a : b));
   const result = lines.map(line => line.substr(shortestLeadingWhitespace)).join('\n');
   return result;
@@ -13157,8 +13157,8 @@ function fetchSource(source) {
       const END_TOKEN = '</tm-examples>';
       const start = text.indexOf('<tm-examples');
       const end = text.substr(start).indexOf(END_TOKEN) + END_TOKEN.length;
-      const source = text.substr(start, end);
-      console.log('MAIN SOURCE SOURCE: ', start, end, source);
+      const source = text.substr(start, end); //console.log('MAIN SOURCE SOURCE: ', start, end, source);
+
       resolve(source);
     }).catch(error => {
       console.log('MAIN SOURCE ERROR: ', error);
@@ -13193,7 +13193,7 @@ window.customElements.define('tm-examples', class extends LitElement {
     this.sites = {}; // TODO: need to sort out making author details configurable
 
     this.author = {
-      'site': 'htts://tim.mcmaster.id.au',
+      'site': 'http://tim.mcmaster.id.au',
       'src': 'https://github.com/tmcmaster',
       'pika': 'https://www.pika.dev/search?q=%40wonkytech',
       'npm': 'https://www.npmjs.com/search?q=%40wonkytech',
@@ -13207,8 +13207,9 @@ window.customElements.define('tm-examples', class extends LitElement {
     this.tabs = this.shadowRoot.querySelector('#tabs');
     this.sections = this.shadowRoot.querySelector('#slot').assignedNodes().filter(node => node.nodeName === "SECTION");
     fetchSource(getSourcePath(this.source)).then(source => {
-      this.sourceList = parseSectionSource(source); //console.log('------', sourceList);
-    }).catch(error => {//console.log('------', error);
+      this.sourceList = parseSectionSource(source);
+    }).catch(error => {
+      console.error('There was an error get the source for the examples.', error);
     });
     const {
       tabs,
@@ -13217,40 +13218,42 @@ window.customElements.define('tm-examples', class extends LitElement {
 
     sections.forEach((section, index) => {
       const title = section.getAttribute('title');
-      const heading = document.createElement('h3');
-      heading.style = 'color:grey;margin-bottom:10px;';
-      heading.innerText = title === null ? 'Example' : title;
+      section.style = "display: flex";
+      const scripts = Array.from(section.childNodes).filter(node => node.tagName === 'SCRIPT');
+      scripts.forEach(script => {
+        let clone = document.createElement('script');
+        clone.innerText = script.innerText;
+        document.head.appendChild(clone);
+        section.removeChild(script);
+      });
+      const styles = Array.from(section.childNodes).filter(node => node.tagName === 'STYLE');
+      styles.forEach(style => {
+        let clone = document.createElement('style');
+        clone.innerText = style.innerText;
+        document.head.appendChild(clone);
+        section.removeChild(style);
+      });
       const button = document.createElement('button');
 
       button.onclick = () => {
         const {
           sourceList
         } = this;
-        this.shadowRoot.getElementById('ddd').viewSource(sourceList[index]);
+        this.shadowRoot.getElementById('source').viewSource(sourceList[index]);
       };
 
-      button.style = 'float:right;margin-top:-30px;border:solid lightgrey 0.5px;';
+      button.name = 'source';
+      button.style = 'margin-top:-20px;float:right;border:solid lightgrey 0.5px;';
       button.appendChild(document.createTextNode('Source'));
-      const hr = document.createElement('hr');
-      hr.style = "border:solid lightgrey 0.5px;";
-      section.insertBefore(hr, section.firstChild);
       section.insertBefore(button, section.firstChild);
-      section.insertBefore(heading, section.firstChild);
+      const main = document.createElement('main');
+      Array.from(section.childNodes).filter(child => child.name !== 'source').forEach(child => {
+        main.appendChild(section.removeChild(child));
+      });
+      section.main = main;
       const tab = document.createElement('vaadin-tab');
       tab.appendChild(document.createTextNode(title));
       tabs.appendChild(tab);
-      const templates = Array.from(section.childNodes).filter(node => node.tagName === 'CODE');
-      templates.forEach(template => {
-        Array.from(template.childNodes).forEach(node => {//section.appendChild(node);
-        });
-      });
-      const scripts = Array.from(section.childNodes).filter(node => node.tagName === 'SCRIPT');
-      scripts.forEach(script => {
-        //console.log('Cloning script: ', script.innerText);
-        let clone = document.createElement('script');
-        clone.innerText = script.innerText;
-        document.head.appendChild(clone);
-      });
     });
 
     this._selectSection();
@@ -13267,6 +13270,11 @@ window.customElements.define('tm-examples', class extends LitElement {
     } = this;
     sections.forEach((section, index) => {
       if (index === tabs.selected) {
+        if (section.main !== undefined) {
+          section.appendChild(section.main);
+          section.main = undefined;
+        }
+
         section.style = "display:block";
       } else {
         section.style = "display:none";
@@ -13284,11 +13292,10 @@ window.customElements.define('tm-examples', class extends LitElement {
                 background: var(--tm-demo-background, inherit);
                 //border: solid gray 2px;
                 box-sizing: border-box;
-                padding: 10px;
                 width: 100%;
                 height: 100%;
                 --tm-example-icon-size: 32px;
-                padding: 20px;
+                padding: 3vmin;
             }
 
             article {
@@ -13321,6 +13328,7 @@ window.customElements.define('tm-examples', class extends LitElement {
             
             tm-sites {
                 width: 100%;
+                float: right;
                 margin-bottom: 20px;
             }
             header {
@@ -13335,25 +13343,50 @@ window.customElements.define('tm-examples', class extends LitElement {
                 max-height: 25px;
                 margin-top: 5px;
             }
+            
+            div.header {
+                height: 50px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            tm-sites > h2, tm-sites > span {
+                color: gray;
+            }
+
+            /* TODO: need to work out how to style within slotted elements (section need a main for the example to go in.)*/
+            ::slotted(section) {
+                box-sizing: border-box;
+                //border: solid red 5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding-top: 20px;
+                //border: solid lightgray 1px;
+            }
         `;
   } // noinspection JSUnusedGlobalSymbols
 
 
   render() {
     return html`
-            
             <article>
                 <header>
-                    <h1>${this.heading}</h1>
-                    ${Object.keys(this.sites).length === 0 ? "" : html`
-                        <tm-sites .sites="${this.sites}"></tm-sites>
-                    `}
+                    <div class="header">
+                        ${Object.keys(this.sites).length === 0 ? "" : html`
+                            <tm-sites .sites="${this.sites}">
+                                <h2 slot="left">${this.heading}</h2>
+                                <h2 slot="right">Demos</h2>
+                            </tm-sites>
+                        `}
+                    </div>
                     <hr/>                
                     <nav>
                         <vaadin-tabs id="tabs"></vaadin-tabs>
                     </nav>
                 </header>
-
                 <main>
                     <slot id="slot"></slot>
                 </main>
@@ -13365,7 +13398,7 @@ window.customElements.define('tm-examples', class extends LitElement {
                 </footer>
             </article>
 
-            <tm-demo-source id="ddd"></tm-demo-source>
+            <tm-demo-source id="source"></tm-demo-source>
         `;
   }
 

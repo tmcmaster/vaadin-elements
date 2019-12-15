@@ -1,9 +1,9 @@
 {
   "imports": {
-    "lit-element": "./lit-element.js",
-    "lit-html": "./lit-html.js",
     "@wonkytech/polymer-elements": "./@wonkytech/polymer-elements.js",
     "@wonkytech/tm-examples": "./@wonkytech/tm-examples.js",
-    "@wonkytech/vaadin-elements": "./@wonkytech/vaadin-elements.js"
+    "@wonkytech/vaadin-elements": "./@wonkytech/vaadin-elements.js",
+    "lit-element": "./lit-element.js",
+    "lit-html": "./lit-html.js"
   }
 }

@@ -36,7 +36,7 @@
         "docs:open": "http-server --open docs"
     },
     "dependencies": {
-        "@wonkytech/polymer-elements": "0.0.16",
+        "@wonkytech/polymer-elements": "0.0.17",
         "lit-element": "^2.0.1",
         "lit-html": "^1.0.0"
     },
