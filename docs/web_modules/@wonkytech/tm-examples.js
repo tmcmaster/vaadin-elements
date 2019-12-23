@@ -13247,6 +13247,9 @@ window.customElements.define('tm-examples', class extends LitElement {
       button.appendChild(document.createTextNode('Source'));
       section.insertBefore(button, section.firstChild);
       const main = document.createElement('main');
+      main.style.display = "flex";
+      main.style.flexDirection = "row";
+      main.style.justifyContent = "center";
       Array.from(section.childNodes).filter(child => child.name !== 'source').forEach(child => {
         main.appendChild(section.removeChild(child));
       });
@@ -13292,8 +13295,8 @@ window.customElements.define('tm-examples', class extends LitElement {
                 background: var(--tm-demo-background, inherit);
                 //border: solid gray 2px;
                 box-sizing: border-box;
-                width: 100%;
-                height: 100%;
+                width: 100vw;
+                height: 100vh;
                 --tm-example-icon-size: 32px;
                 padding: 3vmin;
             }
@@ -13365,6 +13368,12 @@ window.customElements.define('tm-examples', class extends LitElement {
                 justify-content: center;
                 padding-top: 20px;
                 //border: solid lightgray 1px;
+            }
+            
+            nav {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
             }
         `;
   } // noinspection JSUnusedGlobalSymbols

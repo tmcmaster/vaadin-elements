@@ -8,6 +8,8 @@ const dataGridData = [
     {name: {first:'AAA', last: 'aaa'}, location: {city: 'Aaa'}, visitCount: 1},
     {name: {first:'BBB', last: 'bb'}, location: {city: 'Bbb'}, visitCount: 2}
 ];
+const dataGridData2 = dataGridData;
+
 
 let sites = {
     'src': 'https://github.com/tmcmaster/vaadin-elements',
@@ -54,6 +56,22 @@ render(html`
                 ];
             </script>
             <vaadin-grid id="vaadin-grid" .items="${dataGridData}">
+                <vaadin-grid-filter-column path="name.first" header="First name"></vaadin-grid-filter-column>
+                <vaadin-grid-filter-column path="name.last" header="Last name"></vaadin-grid-filter-column>
+                <vaadin-grid-sort-column path="location.city"></vaadin-grid-sort-column>
+                <vaadin-grid-column path="visitCount" text-align="end" width="120px" flex-grow="0"></vaadin-grid-column>
+            </vaadin-grid>            
+        </section>
+        
+        <section title="Selectable Vaadin Grid">
+            <script>
+                let dataGridData2 = [
+                    {name: {first:'AAA', last: 'aaa'}, location: {city: 'Aaa'}, visitCount: 1},
+                    {name: {first:'BBB', last: 'bb'}, location: {city: 'Bbb'}, visitCount: 2}
+                ];
+            </script>
+            <vaadin-grid id="vaadin-grid" .items="${dataGridData2}">
+                <vaadin-grid-selection-column auto-select></vaadin-grid-selection-column>
                 <vaadin-grid-filter-column path="name.first" header="First name"></vaadin-grid-filter-column>
                 <vaadin-grid-filter-column path="name.last" header="Last name"></vaadin-grid-filter-column>
                 <vaadin-grid-sort-column path="location.city"></vaadin-grid-sort-column>
