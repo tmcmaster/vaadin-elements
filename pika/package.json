@@ -1,6 +1,8 @@
 {
     "scripts": {
-        "pika:build": "npm update && rm -rf node_modules/@wonkytech/vaadin-elements/node_modules && npx @pika/web --dest ../docs/web_modules"
+        "pika:clean": "rm -rf node_modules/@wonkytech/*/node_modules",
+        "pika:build": "npx @pika/web --dest ../docs/web_modules",
+        "build": "npm update && npm run pika:clean && npm run pika:build"
     },
     "dependencies": {
         "@wonkytech/polymer-elements": "~0.0.17",
