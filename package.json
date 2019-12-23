@@ -25,15 +25,9 @@
         "build": "pika build",
         "version": "npm run build",
         "publish": "pika publish",
+        "build:docs": "(cd pika; npm run pika:build)",
         "demo": "owc-dev-server",
-        "demo:open": "owc-dev-server --open demo",
-        "docs:clear": "rm -rf docs/web_modules",
-        "docs:install": "npm install && npx @pika/web --dest docs/web_modules",
-        "docs:pika": "(cd pika; npm run pika:build)",
-        "build:docs:hold": "npm run docs:clear && npm run docs:install && npm run docs:pika",
-        "build:docs": "npm run docs:clear && npm run docs:pika",
-        "docs": "http-server docs",
-        "docs:open": "http-server --open docs"
+        "docs": "http-server docs"
     },
     "dependencies": {
         "@wonkytech/polymer-elements": "0.0.17",

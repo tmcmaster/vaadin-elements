@@ -9,6 +9,7 @@ import './vaadin-grid/vaadin-grid.js';
 import './vaadin-grid/vaadin-grid-column.js';
 import './vaadin-grid/vaadin-grid-filter-column.js';
 import './vaadin-grid/vaadin-grid-sort-column.js';
+import './vaadin-grid/vaadin-grid-selection-column.js';
 import './vaadin-icons/vaadin-icons.js';
 import './vaadin-item/vaadin-item.js';
 import './vaadin-list-box/vaadin-list-box.js';
